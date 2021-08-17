@@ -2,6 +2,48 @@ const normal = isNormal => {
     let order = [3,6,5,4,2,7,1,8];
     if(!isNormal){
         order.sort(() => (Math.random() > .5) ? 1 : -1);
+        //Bishops opposite colors
+        //Bishop arr pos: 0,1
+        console.log(order)
+        if(order[0] % 2 == order[1] % 2){
+            let odd = order[0] % 2;
+            for (let index = 0; index < order.length; index++) {
+                if(order[index] % 2 != odd){
+                    console.log(index)
+                    let temp = order[index];
+                    order[index] = order[0];
+                    order[0] = temp;
+                    break;
+                }                
+            }
+        }
+        console.log(order)
+
+        //king in between rooks
+        //King arr pos: 2
+
+        //This looks horrible, I'm sorry
+        console.log("Rook 1 > King",order[6] > order[2], "Rook 2 > King", order[7] > order[2]);
+        console.log("Rook 1 < King",order[6] < order[2], "Rook 2 < King", order[7] < order[2]);
+        console.log(order)
+        if(order[6] > order[7]){
+            let temp = order[6];
+            order[6] = order[7];
+            order[7] = temp;
+        }
+        if(order[6] > order[2] && order[7] > order[2]){
+            let temp = order[6];
+            order[6] = order[2];
+            order[2] = temp;
+        }
+        console.log(order)
+        if(order[6] < order[2] && order[7] < order[2]){
+            let temp = order[7];
+            order[7] = order[2];
+            order[2] = temp;    
+        }
+        console.log(order)
+        //rook arr pos: 6, 7
     }
     game(order);
 }
